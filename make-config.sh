@@ -624,6 +624,9 @@ elif [ "$sbcl_arch" = "hppa" ]; then
     printf ' :cheneygc' >> $ltf
     printf ' :stack-allocatable-vectors :stack-allocatable-fixed-objects' >> $ltf
     printf ' :stack-allocatable-lists' >> $ltf
+elif [ "$sbcl_arch" = "arm" ]; then
+    printf ' :cheneygc' >> $ltf
+    printf ' :stack-allocatable-closures :stack-allocatable-lists' >> $ltf
 else
     # Nothing need be done in this case, but sh syntax wants a placeholder.
     echo > /dev/null

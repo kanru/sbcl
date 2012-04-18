@@ -151,7 +151,7 @@
           ":SB-THREAD not supported on selected architecture")
          ("(and gencgc cheneygc)"
           ":GENCGC and :CHENEYGC are incompatible")
-         ("(and cheneygc (not (or alpha hppa mips ppc sparc)))"
+         ("(and cheneygc (not (or alpha hppa mips ppc sparc arm)))"
           ":CHENEYGC not supported on selected architecture")
          ("(and gencgc (not (or ppc x86 x86-64)))"
           ":GENCGC not supported on selected architecture")

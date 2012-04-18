@@ -79,6 +79,16 @@ ldso_stub__ ## fct: ;                           \\
 .L ## fct ## e1: ;                              \\
         .size    ldso_stub__ ## fct,.L ## fct ## e1-ldso_stub__ ## fct ;"
 
+#!+ (and arm linux) "
+#define LDSO_STUBIFY(fct)                       \\
+        .align 16 ;                             \\
+.globl ldso_stub__ ## fct ;                     \\
+        .type    ldso_stub__ ## fct,@function ; \\
+ldso_stub__ ## fct: ;                           \\
+        jmp fct ;                               \\
+.L ## fct ## e1: ;                              \\
+        .size    ldso_stub__ ## fct,.L ## fct ## e1-ldso_stub__ ## fct ;"
+
 ;;; osf1 has ancient cpp that doesn't do ##
 #!+(and osf1 alpha) "
 #define LDSO_STUBIFY(fct)                       \\
