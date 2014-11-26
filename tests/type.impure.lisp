@@ -771,6 +771,17 @@
 
     (test 'subtypep-fwd-testb1 'subtypep-fwd-testb2 nil nil)
     (test 'subtypep-fwd-testb2 'subtypep-fwd-testb1 t t)))
+
+(with-test (:name (:bug-1395910 :compiled-program-error-invalid-type-specifier))
+  (assert-error (defun foo (a)
+                  (declare ((simple-array 3) a))
+                  (foo a))
+                sb-int:compiled-program-error)
+  (assert-error (typexpand 3) simple-error)
+  (assert-error (typexpand-1 3) simple-error)
+  (assert-error (typexpand-all 3) simple-error)
+  (assert-error (typexpand-all '(cons . 3) simple-error))
+  (assert-error (typexpand-all '#1=(cons . #1#) simple-error)))
 
 ;;; Array type unions have some tricky semantics.
 
